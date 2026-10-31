@@ -1,0 +1,132 @@
+
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+:root {
+  --cine-azul: #2563eb;
+  --cine-azul-oscuro: #1d4ed8;
+  --cine-fondo: #f3f6fa;
+  --cine-blanco: #ffffff;
+  --cine-texto: #1e293b;
+  --cine-gris: #64748b;
+  --cine-borde: #e2e8f0;
+}
+
+body {
+  background-color: var(--cine-fondo);
+  color: var(--cine-texto);
+  font-family: Arial, sans-serif;
+}
+
+h1, h2, h3 {
+  color: var(--cine-texto);
+  font-weight: 600;
+}
+
+form label {
+  color: #475569;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+form input:not([type="checkbox"]):not([type="radio"]),
+form select,
+form textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  padding: 10px;
+  background-color: white;
+  color: #1e293b;
+  max-width: 100%;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--cine-azul);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+button[type="submit"],
+.btn-success {
+  background-color: var(--cine-azul);
+  border: 1px solid var(--cine-azul);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover,
+.btn-success:hover {
+  background-color: var(--cine-azul-oscuro);
+  border-color: var(--cine-azul-oscuro);
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  font-size: 14px;
+}
+
+table thead {
+  background-color: #eff4fa;
+}
+
+table th {
+  padding: 14px;
+  color: #475569;
+  text-align: left;
+  border-bottom: 2px solid var(--cine-borde);
+}
+
+table td {
+  padding: 14px;
+  color: #334155;
+  border-bottom: 1px solid var(--cine-borde);
+  vertical-align: top;
+}
+
+table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.contenedor-pagina {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 0 20px;
+}
+
+.tarjeta {
+  background-color: var(--cine-blanco);
+  border: 1px solid var(--cine-borde);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 24px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 700px) {
+  .contenedor-pagina {
+    padding: 0 12px;
+  }
+
+  .tarjeta {
+    padding: 16px;
+  }
+}
+
+.pie-sistema {
+  width: 100%;
+  background-color: #ffffff;
+  color: #64748b;
+  text-align: center;
+  padding: 22px 15px;
+  margin-top: 50px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+

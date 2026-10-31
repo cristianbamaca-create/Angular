@@ -1,0 +1,28 @@
+@if (tieneSesion() && router.url !== '/login') {
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/bienvenida">Sistema Cine</a>
+      <div class="navbar-nav w-100 d-flex align-items-center">
+        <a class="nav-link" routerLink="/bienvenida">Usuarios</a>
+        <a class="nav-link" routerLink="/anuncio">Anuncios</a>
+        <a class="nav-link" routerLink="/genero">Géneros</a>
+        <a class="nav-link" routerLink="/clasificacion">Clasificación</a>
+        <a class="nav-link" routerLink="/sala">Salas</a>
+        <a class="nav-link" routerLink="/asiento">Asientos</a>
+        <a class="nav-link" routerLink="/pelicula">Películas</a>
+        <a class="nav-link" routerLink="/funcion">Funciones</a>
+        <button class="btn btn-link nav-link text-danger ms-auto border-0" (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </nav>
+}
+
+<div class="container">
+  <router-outlet></router-outlet>
+
+<footer class="pie-sistema">
+  Sistema Cine
+</footer>
+
+
+</div>

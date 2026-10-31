@@ -1,0 +1,41 @@
+<h2>Crear examen nuevo:</h2>
+
+<form (ngSubmit)="guardarExamen()">
+  <p>
+    <label>Fecha Examen: </label>
+    <input type="text" [(ngModel)]="nuevoExamen.fechaExamen" name="fechaExamen" required>
+  </p>
+  <p>
+    <label>Nota: </label>
+    <input type="text" [(ngModel)]="nuevoExamen.nota" name="nota" required>
+  </p>
+  <p>
+    <label>Carnet: </label>
+    <input type="text" [(ngModel)]="nuevoExamen.carnet" name="carnet">
+  </p>
+
+  <button type="submit">Ingresar</button>
+</form>
+
+<hr>
+
+<h2>Consulta de examenes:</h2>
+
+<table border="0" style="text-align: left; width: 100%;">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Fecha Examen</th>
+      <th>Nota</th>
+      <th>Carnet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of examenes">
+      <td>{{ a.idExamen }}</td>
+      <td>{{ a.fechaExamen }}</td>
+      <td>{{ a.nota }}</td>
+      <td>{{ a.carnet }}</td>
+    </tr>
+  </tbody>
+</table>

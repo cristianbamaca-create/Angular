@@ -1,0 +1,112 @@
+
+@if (usuario) {
+
+  <ion-app>
+    <ion-router-outlet></ion-router-outlet>
+  </ion-app>
+
+} @else {
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>App de Cine</ion-card-title>
+      <ion-card-subtitle>Reserva tus asientos</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      @if (!mostrarRegistro) {
+
+        <ion-list>
+
+          <ion-item>
+            <ion-input
+              label="Correo"
+              type="email"
+              placeholder="correo@ejemplo.com"
+              [(ngModel)]="usuarioLogin.correo">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Contraseña"
+              type="password"
+              [(ngModel)]="usuarioLogin.contrasena">
+            </ion-input>
+          </ion-item>
+
+          <ion-button (click)="login()">
+            <ion-icon name="accessibility-outline"></ion-icon>
+            Ingresar
+          </ion-button>
+
+          <ion-button color="warning" (click)="abrirRegistro()">
+            Crear cuenta
+            <ion-icon name="person-add-outline"></ion-icon>
+          </ion-button>
+
+        </ion-list>
+
+      } @else {
+
+        <ion-list>
+
+          <ion-item>
+            <ion-input
+              label="Nombres"
+              type="text"
+              [(ngModel)]="nuevoUsuario.nombres">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Apellidos"
+              type="text"
+              [(ngModel)]="nuevoUsuario.apellidos">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Correo"
+              type="email"
+              [(ngModel)]="nuevoUsuario.correo">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Teléfono"
+              type="tel"
+              [(ngModel)]="nuevoUsuario.telefono">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Contraseña"
+              type="password"
+              [(ngModel)]="nuevoUsuario.contrasena">
+            </ion-input>
+          </ion-item>
+
+          <ion-button color="success" (click)="crearCuenta()">
+            Crear Usuario
+          </ion-button>
+
+          <ion-button color="medium" (click)="cancelarRegistro()">
+            Cancelar
+          </ion-button>
+
+        </ion-list>
+
+      }
+
+    </ion-card-content>
+
+  </ion-card>
+
+}

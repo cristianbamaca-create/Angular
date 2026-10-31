@@ -1,0 +1,55 @@
+
+
+<h2>Crear asiento nuevo:</h2>
+
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <label>Sala:</label>
+    <select formControlName="idSala">
+        <option value="">Seleccione una sala</option>
+        @for(sala of salas; track sala.idSala){
+            <option [value]="sala.idSala">{{sala.nombre}}</option>
+        }
+    </select>
+    @if(formulario.get('idSala')?.invalid && formulario.get('idSala')?.touched){
+        <div>La sala es obligatoria</div>
+    }
+    <br><br>
+
+    <label>Fila (Número):</label>
+    <input type="number" formControlName="fila">
+    @if(formulario.get('fila')?.invalid && formulario.get('fila')?.touched){
+        <div>La fila es obligatoria</div>
+    }
+    <br><br>
+
+    <label>Número de Asiento:</label>
+    <input type="number" formControlName="numero">
+    @if(formulario.get('numero')?.invalid && formulario.get('numero')?.touched){
+        <div>El número es obligatorio</div>
+    }
+    <br><br>
+    
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+
+<h2>Consulta de asientos:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id Asiento</th>
+            <th>Id Sala</th>
+            <th>Fila</th>
+            <th>Número</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(asiento of asientos; track asiento.idAsiento){
+        <tr>
+            <td>{{asiento.idAsiento}}</td>
+            <td>{{asiento.idSala}}</td>
+            <td>{{asiento.fila}}</td>
+            <td>{{asiento.numero}}</td>
+        </tr>
+        }
+    </tbody>
+</table>

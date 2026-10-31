@@ -1,0 +1,54 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>App de Cine - Anuncios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>Anuncios del Cine</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        @for (anuncio of anuncios; track anuncio.idAnuncio) {
+
+          <ion-item>
+
+            <ion-label>
+
+              <h2>{{ anuncio.titulo }}</h2>
+
+              <p>{{ anuncio.descripcion }}</p>
+
+              <p>Fecha: {{ anuncio.fechaPublicacion }}</p>
+              
+              <p>Hashtag: {{ anuncio.hashtag }}</p>
+
+            </ion-label>
+
+          </ion-item>
+
+        } @empty {
+
+          <p>No hay anuncios registrados.</p>
+
+        }
+
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-button expand="block" (click)="consultarAnuncios()">
+    Actualizar anuncios
+  </ion-button>
+
+</ion-content>

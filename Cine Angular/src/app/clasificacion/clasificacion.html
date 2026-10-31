@@ -1,0 +1,36 @@
+<h2>Crear clasificación nueva:</h2>
+
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <label>Nombre de la Clasificación:</label>
+    <input type="text" formControlName="nombre">
+    @if(formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched){
+        <div>El nombre es obligatorio</div>
+    }
+    <br><br>
+
+    <label>Descripción:</label>
+    <input type="text" formControlName="descripcion">
+    <br><br>
+    
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+
+<h2>Consulta de clasificaciones:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(clasificacion of clasificaciones; track clasificacion.idClasificacion){
+        <tr>
+            <td>{{clasificacion.idClasificacion}}</td>
+            <td>{{clasificacion.nombre}}</td>
+            <td>{{clasificacion.descripcion}}</td>
+        </tr>
+        }
+    </tbody>
+</table>

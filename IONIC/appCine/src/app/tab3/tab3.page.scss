@@ -1,0 +1,61 @@
+
+ion-content {
+  --background: #f3f6fa;
+  --padding-bottom: 80px;
+}
+
+ion-card {
+  margin: 12px;
+  border-radius: 8px;
+}
+
+ion-card-header {
+  padding: 14px;
+}
+
+ion-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+ion-card-content {
+  padding: 12px 14px 20px;
+}
+
+ion-item {
+  --min-height: 50px;
+  margin-bottom: 4px;
+}
+
+h3 {
+  margin-top: 18px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.asientos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.asientos ion-button {
+  margin: 0;
+  font-size: 12px;
+}
+
+.leyenda {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 12px;
+  line-height: 1.8;
+}
+
+ion-card-content > ion-button {
+  margin-top: 18px;
+}

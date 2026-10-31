@@ -1,0 +1,17 @@
+.campo {
+  margin-bottom: 15px;
+}
+
+.campo label {
+  display: block;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+.boton-contenedor {
+  text-align: right;
+  margin-top: 17px;
+}

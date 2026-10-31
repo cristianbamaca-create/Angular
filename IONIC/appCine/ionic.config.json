@@ -1,0 +1,7 @@
+{
+  "name": "appCine",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

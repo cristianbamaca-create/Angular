@@ -1,0 +1,66 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>App de Cine - Funciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>Listado de Funciones</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        @for (funcion of funciones; track funcion.idFuncion) {
+
+          <ion-item>
+
+            <ion-label>
+
+              <h2>
+                {{ nombrePelicula(funcion.idPelicula) }}
+              </h2>
+
+              <p>
+                Fecha: {{ funcion.fecha }}
+              </p>
+
+              <p>
+                Hora: {{ funcion.hora }}
+              </p>
+
+              <p>
+                Sala: {{ nombreSala(funcion.idSala) }}
+              </p>
+
+              <p>
+                Precio: Q{{ funcion.precioEntrada }}
+              </p>
+
+            </ion-label>
+
+          </ion-item>
+
+        } @empty {
+
+          <p>No hay funciones registradas.</p>
+
+        }
+
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-button expand="block" (click)="actualizarFunciones()">
+    Actualizar funciones
+  </ion-button>
+
+</ion-content>

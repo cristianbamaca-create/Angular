@@ -1,0 +1,232 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Reserva de Cine</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>Nueva reserva</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item>
+          <ion-select
+            label="Cliente"
+            labelPlacement="stacked"
+            placeholder="Seleccione un cliente"
+            interface="alert"
+            [(ngModel)]="nuevaReserva.idCliente">
+
+            @for(cliente of clientes; track cliente.idCliente) {
+              <ion-select-option [value]="cliente.idCliente">
+                {{ cliente.nombres }} {{ cliente.apellidos }}
+              </ion-select-option>
+            }
+
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-select
+            label="Película"
+            labelPlacement="stacked"
+            placeholder="Seleccione una película"
+            interface="alert"
+            [(ngModel)]="nuevaReserva.idPelicula"
+            (ngModelChange)="seleccionarPelicula()">
+
+            @for(pelicula of peliculas; track pelicula.idPelicula) {
+              <ion-select-option [value]="pelicula.idPelicula">
+                {{ pelicula.titulo }}
+              </ion-select-option>
+            }
+
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-select
+            label="Función"
+            labelPlacement="stacked"
+            placeholder="Seleccione una función"
+            interface="alert"
+            [(ngModel)]="nuevaReserva.idFuncion"
+            (ngModelChange)="seleccionarFuncion()">
+
+            @for(funcion of funcionesPelicula(); track funcion.idFuncion) {
+              <ion-select-option [value]="funcion.idFuncion">
+                Función {{ funcion.idFuncion }}
+                - {{ funcion.fecha | date:'dd/MM/yyyy':'UTC' }}
+                - {{ funcion.hora | date:'h:mm a' }}
+              </ion-select-option>
+            }
+
+          </ion-select>
+        </ion-item>
+
+        @if(nuevaReserva.idPelicula && funcionesPelicula().length === 0) {
+          <p>No hay funciones para esta película.</p>
+        }
+
+        <ion-item>
+          <ion-input
+            label="¿Cuántos tickets?"
+            labelPlacement="stacked"
+            type="number"
+            min="1"
+            [(ngModel)]="nuevaReserva.cantidadEntradas"
+            (ngModelChange)="cambiarTickets()">
+          </ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <h3>Seleccionar asientos</h3>
+
+      @if(nuevaReserva.idFuncion) {
+
+        <p>
+          Seleccionados:
+          {{ asientosSeleccionados.length }}
+          de {{ nuevaReserva.cantidadEntradas }}
+        </p>
+
+        <div class="asientos">
+
+          @for(asiento of asientosSala(); track asiento.idAsiento) {
+
+            <ion-button
+              size="small"
+              [color]="asientoOcupado(asiento.idAsiento)
+                ? 'danger'
+                : asientosSeleccionados.includes(asiento.idAsiento)
+                  ? 'primary'
+                  : 'light'"
+              [disabled]="asientoOcupado(asiento.idAsiento)"
+              (click)="seleccionarAsiento(asiento.idAsiento)">
+
+              F{{ asiento.fila }}-{{ asiento.numero }}
+
+            </ion-button>
+
+          } @empty {
+
+            <p>No hay asientos registrados para esta sala.</p>
+
+          }
+
+        </div>
+
+        <p class="leyenda">
+          Gris: Disponible |
+          Azul: Seleccionado |
+          Rojo: Ocupado
+        </p>
+
+      } @else {
+
+        <p>Seleccione una función para ver los asientos.</p>
+
+      }
+
+      <h3>Monto a pagar</h3>
+
+      <h2>
+        Q{{ calcularTotal() | number:'1.2-2' }}
+      </h2>
+
+      <p>
+        Fecha de reserva: Se registrará automáticamente.
+      </p>
+
+      <ion-button
+        expand="block"
+        color="success"
+        [disabled]="guardando || cargando"
+        (click)="guardarReserva()">
+
+        {{ guardando ? 'Guardando...' : 'Guardar reserva' }}
+
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>Reservas guardadas</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-button
+        expand="block"
+        fill="outline"
+        (click)="cargarDatos()">
+
+        Actualizar listado
+
+      </ion-button>
+
+      <ion-list>
+
+        @for(reserva of reservas; track reserva.idReserva) {
+
+          <ion-item>
+
+            <ion-label>
+
+              <h2>Reserva #{{ reserva.idReserva }}</h2>
+
+              <p>
+                Cliente:
+                {{ nombreCliente(reserva.idCliente) }}
+              </p>
+
+              <p>
+                Película:
+                {{ nombreFuncion(reserva.idFuncion) }}
+              </p>
+
+              <p>
+                Tickets:
+                {{ reserva.cantidadEntradas }}
+              </p>
+
+              <p>
+                Total:
+                Q{{ reserva.totalAPagar | number:'1.2-2' }}
+              </p>
+
+              <p>
+                Fecha:
+                {{ reserva.fechaReserva | date:'dd/MM/yyyy HH:mm' }}
+              </p>
+
+            </ion-label>
+
+          </ion-item>
+
+        } @empty {
+
+          <p>No hay reservas registradas.</p>
+
+        }
+
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,76 @@
+
+<h2>Crear película nueva:</h2>
+
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <label>Título:</label>
+    <input type="text" formControlName="titulo">
+    @if(formulario.get('titulo')?.invalid && formulario.get('titulo')?.touched){
+        <div>El título es obligatorio</div>
+    }
+    <br><br>
+
+    <label>Sinopsis:</label>
+    <input type="text" formControlName="sinopsis">
+    <br><br>
+
+    <label>Duración (Minutos):</label>
+    <input type="number" formControlName="duracionMinutos">
+    @if(formulario.get('duracionMinutos')?.invalid && formulario.get('duracionMinutos')?.touched){
+        <div>La duración es obligatoria</div>
+    }
+    <br><br>
+
+    <label>Género:</label>
+    <select formControlName="idGenero">
+        <option value="">Seleccione un género</option>
+        @for(genero of generos; track genero.idGenero){
+            <option [value]="genero.idGenero">{{genero.nombre}}</option>
+        }
+    </select>
+    @if(formulario.get('idGenero')?.invalid && formulario.get('idGenero')?.touched){
+        <div>El género es obligatorio</div>
+    }
+    <br><br>
+
+    <label>Clasificación:</label>
+    <select formControlName="idClasificacion">
+        <option value="">Seleccione una clasificación</option>
+        @for(clasificacion of clasificaciones; track clasificacion.idClasificacion){
+            <option [value]="clasificacion.idClasificacion">{{clasificacion.nombre}}</option>
+        }
+    </select>
+    @if(formulario.get('idClasificacion')?.invalid && formulario.get('idClasificacion')?.touched){
+        <div>La clasificación es obligatoria</div>
+    }
+    <br><br>
+
+    <label>URL Imagen Promocional:</label>
+    <input type="text" formControlName="imagenPromocional">
+    <br><br>
+    
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+
+<h2>Consulta de películas:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Título</th>
+            <th>Duración (min)</th>
+            <th>Id Género</th>
+            <th>Id Clasificación</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(pelicula of peliculas; track pelicula.idPelicula){
+        <tr>
+            <td>{{pelicula.idPelicula}}</td>
+            <td>{{pelicula.titulo}}</td>
+            <td>{{pelicula.duracionMinutos}}</td>
+            <td>{{pelicula.idGenero}}</td>
+            <td>{{pelicula.idClasificacion}}</td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+<h2>Crear anuncio nuevo:</h2>
+
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <label>Título del Anuncio:</label>
+    <input type="text" formControlName="titulo">
+    @if(formulario.get('titulo')?.invalid && formulario.get('titulo')?.touched){
+        <div>El título es obligatorio</div>
+    }
+    <br><br>
+    <label>Descripción:</label>
+    <input type="text" formControlName="descripcion">
+    @if(formulario.get('descripcion')?.invalid && formulario.get('descripcion')?.touched){
+        <div>La descripción es obligatorio</div>
+    }
+    <br><br>
+    <label>Fecha:</label>
+    <input type="date" formControlName="fechaPublicacion">
+    @if(formulario.get('fechaPublicacion')?.invalid && formulario.get('fechaPublicacion')?.touched){
+        <div>La fecha es obligatorio</div>
+    }
+    <br><br>
+    <label>Hashtag:</label>
+    <input type="text" formControlName="hashtag">
+    @if(formulario.get('hashtag')?.invalid && formulario.get('hashtag')?.touched){
+        <div>El Hashtag es obligatorio</div>
+    }
+    <br><br>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+
+<h2>Consulta de anuncios:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th> 
+            <th>Título</th>
+            <th>Contenido</th>
+            <th>Fecha</th>
+            <th>Hashtag</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(anuncio of anuncios; track anuncio.idAnuncio){
+        <tr>
+            <td>{{anuncio.idAnuncio}}</td>
+            <td>{{anuncio.titulo}}</td>
+            <td>{{anuncio.descripcion}}</td>
+            <td>{{anuncio.fechaPublicacion}}</td>
+            <td>{{anuncio.hashtag}}</td>
+        </tr>
+        }
+    </tbody>
+</table>

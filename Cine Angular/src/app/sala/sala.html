@@ -1,0 +1,39 @@
+<h2>Crear sala nueva:</h2>
+
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <label>Nombre de la Sala:</label>
+    <input type="text" formControlName="nombre">
+    @if(formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched){
+        <div>El nombre es obligatorio</div>
+    }
+    <br><br>
+
+    <label>Capacidad:</label>
+    <input type="number" formControlName="capacidad">
+    @if(formulario.get('capacidad')?.invalid && formulario.get('capacidad')?.touched){
+        <div>La capacidad es obligatoria</div>
+    }
+    <br><br>
+    
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+
+<h2>Consulta de salas:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Capacidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(sala of salas; track sala.idSala){
+        <tr>
+            <td>{{sala.idSala}}</td>
+            <td>{{sala.nombre}}</td>
+            <td>{{sala.capacidad}}</td>
+        </tr>
+        }
+    </tbody>
+</table>

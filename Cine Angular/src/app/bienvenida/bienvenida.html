@@ -1,0 +1,52 @@
+<h2>Crear usuario nuevo:</h2>
+
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <label>Nombre:</label>
+    <input type="text" formControlName="nombres">
+    @if(formulario.get('nombres')?.invalid &&
+    formulario.get('nombres')?.touched){
+        <div>El nombre es obligatorio</div>
+    }
+    <br><br>
+    <label>Email:</label>
+    <input type="email" formControlName="correo">
+    @if(formulario.get('correo')?.invalid &&
+    formulario.get('correo')?.touched){
+        <div>El email es obligatorio</div>
+    }
+    <br><br>
+    <label>Password:</label>
+    <input type="password" formControlName="contrasena">
+    @if(formulario.get('contrasena')?.invalid &&
+    formulario.get('contrasena')?.touched){
+        <div>El password es obligatorio</div>
+    }
+    <br><br>
+    <button type = "submit">Ingresar</button>
+</form>
+
+
+
+<h2>Consulta de usuarios:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Fecha creacion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(usuario of usuarios; track usuario.idUsuario){
+        <tr>
+            <td>{{usuario.idUsuario}}</td>
+            <td>{{usuario.nombres}}</td>
+            <td>{{usuario.correo}}</td>
+            <td>{{usuario.contrasena}}</td>
+            <td>{{usuario.fechaCreacion | date}}</td>
+        </tr>
+        }
+    </tbody>
+</table>
